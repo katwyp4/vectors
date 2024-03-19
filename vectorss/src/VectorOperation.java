@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,4 +21,39 @@ public class VectorOperation {
                 vector.add(val);
         }
     }
+    private void add() {
+        try {
+            if (vector1.size() != vector2.size()) {
+                throw new VectorLengthMismatchException();
+            } else {
+                ArrayList<Double> result = new ArrayList<>();
+                for (int i = 0; i < vector1.size(); i++) {
+                    result.add(vector1.get(i) + vector2.get(i));
+                }
+                save(result);
+            }
+        }catch( VectorLengthMismatchException e){
+            System.out.println("Different length");
+            System.out.println("Try again");
+        }
+    }
+    private  void  save(ArrayList<Double> result){
+        try{
+            FileWriter  file = new FileWriter("result.txt");
+            for (double number : result) {
+                file.write(number + " ");
+            }
+            file.close();
+
+        }catch(IOException e ){
+            System.out.println("Error to save the file");
+        }
+
+    }
+    public void navigate(){
+        read(vector1);
+        read(vector2);
+        add();
+    }
+
 }
