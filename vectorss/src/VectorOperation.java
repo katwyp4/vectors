@@ -24,7 +24,7 @@ public class VectorOperation {
     private void add() {
         try {
             if (vector1.size() != vector2.size()) {
-                throw new VectorLengthMismatchException();
+                throw new VectorLengthMismatchException(vector1.size() , vector2.size());
             } else {
                 ArrayList<Double> result = new ArrayList<>();
                 for (int i = 0; i < vector1.size(); i++) {
@@ -33,7 +33,9 @@ public class VectorOperation {
                 save(result);
             }
         }catch( VectorLengthMismatchException e){
-            System.out.println("Different length");
+            int lenghtV1 = e.getLenght1();
+            int lenghtV2 = e.getLenght2();
+            System.out.println("Different length vector 1 : " + lenghtV1 + "vector 2 : " + lenghtV2);
             System.out.println("Try again");
         }
     }
