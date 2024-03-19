@@ -17,8 +17,12 @@ public class VectorOperation {
         String input = scanner.nextLine();
         String[] parts = input.split("\\s+");
         for (String part : parts) {
+            try {
                 double val = Double.parseDouble(part);
                 vector.add(val);
+            }catch (NumberFormatException ignore){
+
+            }
         }
     }
     private void add() {
